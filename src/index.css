@@ -255,6 +255,7 @@ a {
 @media (max-width: 768px) {
   .navbar.navbar-inverse .navbar-header {
     float: none;
+     padding-top: 20px;
   }
   .navbar.navbar-inverse .navbar-form {
     float: none !important;
