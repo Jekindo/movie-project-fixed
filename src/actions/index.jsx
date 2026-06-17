@@ -166,8 +166,13 @@ export function fetchMovieDetail(id){
   return function(dispatch){
     dispatch(fetchMovie())
     return fetch(url_movie)
-      .then(response => response.json())
-      .then(data => dispatch(fetchMovieSuccess(data)))
+      .then(response => response.json().then(data => ({ ok: response.ok, data })))
+      .then(({ ok, data }) => {
+        if (!ok) {
+          return dispatch(fetchMovieFail(data));
+        }
+        return dispatch(fetchMovieSuccess(data));
+      })
       .catch(error => dispatch(fetchMovieFail(error)))
   }
 }
@@ -177,8 +182,13 @@ export function fetchStarDetail(id){
   return function(dispatch){
     dispatch(fetchMovie())
     return fetch(url_star)
-      .then(response => response.json())
-      .then(data => dispatch(fetchStarSuccess(data)))
+      .then(response => response.json().then(data => ({ ok: response.ok, data })))
+      .then(({ ok, data }) => {
+        if (!ok) {
+          return dispatch(fetchStarFail(data));
+        }
+        return dispatch(fetchStarSuccess(data));
+      })
       .catch(error => dispatch(fetchStarFail(error)))
   }
 }

@@ -24,7 +24,7 @@ const movieList = (state = defaultStateList, action) => {
       return {...state, isFetching:false, items:action.data};
     case FETCH_MOVIES_FAILURE:
     case SEARCH_MOVIE_FAILURE:
-      return {...state, isFetching:false, error:action.data};
+      return {...state, isFetching:false, items:[], error:action.data};
     default:
       return state;
   }
@@ -92,6 +92,7 @@ const movieDetail = (state = defaultState, action) => {
     case FETCH_MOVIE_FAILURE:
       return Object.assign({}, state, {
         isFetching:false,
+        item:{},
         error:action.data
       });
     default:
@@ -109,6 +110,7 @@ const starDetail = (state = defaultState, action) => {
     case FETCH_STAR_FAILURE:
       return Object.assign({}, state, {
         isFetching:false,
+        item:{},
         error:action.data
       });
     default:

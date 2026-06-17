@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { CastList, TrailerList } from "../components";
+import { CastList, TrailerList, DisplayMsg } from "../components";
 import { CAST_MAX_NUM, TRAILER_MAX_NUM } from "../const";
 import { Grid, Row, Col } from "react-bootstrap/lib";
 import { MovieInfo, Poster } from "../components";
@@ -36,12 +36,12 @@ class MovieDetail extends Component {
       movie,
       casts,
       trailers,
-      isFetcing_movie,
-      isFetcing_casts,
-      isFetcing_trailers,
+      isFetching_movie,
+      isFetching_casts,
+      isFetching_trailers,
     } = this.props;
 
-    if (isFetcing_movie || isFetcing_casts || isFetcing_trailers) {
+    if (isFetching_movie || isFetching_casts || isFetching_trailers) {
       return <p>loading...</p>;
     }
     if (movie.hasOwnProperty("id")) {
@@ -59,24 +59,25 @@ class MovieDetail extends Component {
           <TrailerList data={trailers.slice(0, TRAILER_MAX_NUM)} />
         </Grid>
       );
-    } else return null;
+    }
+    return <DisplayMsg message="Sorry, this movie could not be found." />;
   }
 }
 
 function mapStateToProps(state) {
   const { movieDetail, castList, trailerList } = state;
-  const { isFetcing_movie, item: movie, error_movie } = movieDetail;
-  const { isFetcing_casts, items: casts, error_casts } = castList;
-  const { isFetcing_trailers, items: trailers, error_trailers } = trailerList;
+  const { isFetching: isFetching_movie, item: movie, error_movie } = movieDetail;
+  const { isFetching: isFetching_casts, items: casts, error_casts } = castList;
+  const { isFetching: isFetching_trailers, items: trailers, error_trailers } = trailerList;
 
   return {
-    isFetcing_movie,
+    isFetching_movie,
     movie,
     error_movie,
-    isFetcing_casts,
+    isFetching_casts,
     casts,
     error_casts,
-    isFetcing_trailers,
+    isFetching_trailers,
     trailers,
     error_trailers,
   };

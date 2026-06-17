@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StarInfo, Poster, MovieList } from "../components";
+import { StarInfo, Poster, MovieList, DisplayMsg } from "../components";
 import { Grid, Row, Col } from "react-bootstrap/lib";
 import { connect } from "react-redux";
 import { fetchStarDetail, fetchMovieList } from "../actions";
@@ -31,7 +31,8 @@ class StarDetail extends Component {
           </div>
         </Grid>
       );
-    } else return null;
+    }
+    return <DisplayMsg message="Sorry, this person could not be found." />;
   }
 }
 

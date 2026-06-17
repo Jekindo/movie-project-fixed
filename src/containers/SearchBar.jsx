@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Navbar, Image } from "react-bootstrap/lib";
+import { Link } from "react-router";
 import TMDBlogo from "../images/themoviedb_green.svg";
 import logo from "../images/logo_square.svg";
 import { connect } from "react-redux";
@@ -130,10 +131,10 @@ class SearchBar extends Component {
       <Navbar bsStyle="inverse">
         <Navbar.Header>
           <Navbar.Brand>
-            <a href="#/">
+            <Link to="/">
               <span style={brandStyle}>{this.props.brand}</span>
               <Image style={imgStyle} src={TMDBlogo} />
-            </a>
+            </Link>
           </Navbar.Brand>
         </Navbar.Header>
         <Navbar.Form pullRight>
